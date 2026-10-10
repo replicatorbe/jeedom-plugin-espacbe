@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0
+
+- Nouvelles infos « Qualité liaison » (% de trames valides, historisée) et « Etat incertain »
+  (firmware ≥ 0.6.0) : si une trame de la clim a été perdue, l'ESP refuse les commandes
+  (statut « Refusée ») pour ne pas écraser un réglage fait à la télécommande.
+  Un appui sur la télécommande resynchronise.
+
 ## 0.3.0
 
 - Widget : Marche/Arrêt et Bip coupé affichés en un seul interrupteur (au lieu de deux).

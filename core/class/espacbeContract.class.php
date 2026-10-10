@@ -83,6 +83,8 @@ class espacbeContract {
         'rssi'               => array('kind' => 'number', 'set' => false),
         'uptime'             => array('kind' => 'number', 'set' => false),
         'cmd_status'         => array('kind' => 'enum',   'set' => false, 'values' => 'CMD_STATUSES'),
+        'state_doubt'        => array('kind' => 'onoff',  'set' => false),
+        'link_quality'       => array('kind' => 'int',    'set' => false),
     );
 
     /* Accusé de la dernière commande (firmware ≥ 0.5.0). */
@@ -90,6 +92,7 @@ class espacbeContract {
         'pending' => 'En attente',
         'ok'      => 'Confirmée',
         'failed'  => 'Non confirmée',
+        'refused' => 'Refusée (état incertain)',
     );
 
     /*
@@ -281,6 +284,9 @@ class espacbeContract {
             array('logicalId' => 'uptime', 'name' => 'Uptime', 'type' => 'info', 'subType' => 'numeric', 'visible' => 0, 'unit' => 's'),
             array('logicalId' => 'last_frame', 'name' => 'Dernière trame', 'type' => 'info', 'subType' => 'string', 'visible' => 0),
             array('logicalId' => 'cmd_status', 'name' => 'Statut commande', 'type' => 'info', 'subType' => 'string', 'visible' => 1),
+            array('logicalId' => 'state_doubt', 'name' => 'Etat incertain', 'type' => 'info', 'subType' => 'binary', 'visible' => 1),
+            array('logicalId' => 'link_quality', 'name' => 'Qualité liaison', 'type' => 'info', 'subType' => 'numeric',
+                  'visible' => 1, 'unit' => '%', 'historized' => 1),
 
             /* -------------------------------------------------------- actions */
             array('logicalId' => 'set_power_on', 'name' => 'Marche', 'type' => 'action', 'subType' => 'other',
