@@ -77,6 +77,7 @@ check('binaire hors contrat', espacbeContract::stateValue('display', 'yes'), nul
 check('mode heat', espacbeContract::stateValue('mode', 'heat'), 'heat');
 check('mode inconnu', espacbeContract::stateValue('mode', 'hot'), null);
 check('fan turbo', espacbeContract::stateValue('fan', 'turbo'), 'turbo');
+check('fan quiet', espacbeContract::stateValue('fan', 'quiet'), 'quiet');
 check('swing_v very_low', espacbeContract::stateValue('swing_v', 'very_low'), 'very_low');
 check('consigne 24', espacbeContract::stateValue('target_temperature', '24'), 24);
 check('température pièce entière', espacbeContract::stateValue('room_temperature', '23'), 23);
@@ -102,7 +103,7 @@ throws('clé inconnue', function () { espacbeContract::setPayload('foo', 'ON'); 
 
 section('Libellés');
 check('listValue mode (énoncé)', espacbeContract::listValue('mode'), 'auto|Auto;cool|Froid;dry|Déshumidification;fan_only|Ventilation;heat|Chaud');
-check('8 vitesses de ventilation', count(espacbeContract::values('fan')), 8);
+check('9 vitesses de ventilation', count(espacbeContract::values('fan')), 9);
 check('7 positions de volet vertical', count(espacbeContract::values('swing_v')), 7);
 
 section('Commandes déclarées');

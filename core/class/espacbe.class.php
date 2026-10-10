@@ -315,13 +315,19 @@ class espacbe extends eqLogic {
         $this->createCommands();
     }
 
-    /* Crée les commandes manquantes, sans toucher à celles qui existent. */
+    /* Crée les commandes manquantes. Pour celles qui existent, seule la liste
+     * de valeurs (issue du contrat) est resynchronisée : le reste (nom,
+     * visibilité, widget) reste celui choisi par l'utilisateur. */
     public function createCommands() {
         $order = 0;
         foreach (espacbeContract::commands() as $def) {
             $order++;
             $cmd = $this->getCmd($def['type'], $def['logicalId']);
             if (is_object($cmd)) {
+                if (isset($def['listValue']) && $cmd->getConfiguration('listValue') != $def['listValue']) {
+                    $cmd->setConfiguration('listValue', $def['listValue']);
+                    $cmd->save();
+                }
                 continue;
             }
             $cmd = new espacbeCmd();

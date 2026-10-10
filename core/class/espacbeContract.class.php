@@ -39,15 +39,17 @@ class espacbeContract {
         'heat'     => 'Chaud',
     );
 
+    // Ordre du cycle de la touche ventilation de la télécommande Airton.
     const FANS = array(
         'auto'      => 'Auto',
-        'very_low'  => 'Très lente',
-        'low'       => 'Lente',
-        'medium'    => 'Moyenne',
-        'high'      => 'Rapide',
-        'very_high' => 'Très rapide',
+        'quiet'     => 'Silence',
+        'very_low'  => 'Vitesse 1',
+        'low'       => 'Vitesse 2',
+        'medium'    => 'Vitesse 3',
+        'high'      => 'Vitesse 4',
+        'very_high' => 'Ventilation max',
+        'turbo'     => 'Méga-turbo',
         'humidity'  => 'Humidité',
-        'turbo'     => 'Turbo',
     );
 
     const SWINGS_V = array(
