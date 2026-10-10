@@ -1,0 +1,3 @@
+# Exclusions propres au plugin espacbe, ajoutées à celles de deploy-plugin.sh.
+# Jeu d'essai et simulateur : outils de développement, inutiles côté Jeedom.
+tests/
