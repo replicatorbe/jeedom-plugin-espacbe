@@ -103,6 +103,7 @@ throws('clé inconnue', function () { espacbeContract::setPayload('foo', 'ON'); 
 
 section('Libellés');
 check('listValue mode (énoncé)', espacbeContract::listValue('mode'), 'auto|Auto;cool|Froid;dry|Déshumidification;fan_only|Ventilation;heat|Chaud');
+check('cmd_status ok', espacbeContract::stateValue('cmd_status', 'ok'), 'ok');
 check('9 vitesses de ventilation', count(espacbeContract::values('fan')), 9);
 check('7 positions de volet vertical', count(espacbeContract::values('swing_v')), 7);
 

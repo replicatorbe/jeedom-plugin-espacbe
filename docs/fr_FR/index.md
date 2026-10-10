@@ -93,7 +93,7 @@ Infos (identifiant logique = clé du contrat) :
 |---|---|---|---|
 | Etat connexion | `status` | binaire (1 = online) | oui |
 | Lien clim | `unit_link` | binaire | oui |
-| Marche | `power` | binaire | non |
+| Etat marche | `power` | binaire | non |
 | Mode | `mode` | texte (`auto`, `cool`, `dry`, `fan_only`, `heat`) | non |
 | Consigne | `target_temperature` | numérique °C, 16–31 | non |
 | Ventilation | `fan` | texte | non |
@@ -114,14 +114,14 @@ Actions (publiées sur `<préfixe>/<dev>/set/<clé>`) :
 
 | Nom | Identifiant logique | Publie |
 |---|---|---|
-| Allumer / Eteindre | `set_power_on` / `set_power_off` | `power` = `ON` / `OFF` |
+| Marche / Arrêt (un seul interrupteur) | `set_power_on` / `set_power_off` | `power` = `ON` / `OFF` |
 | Choisir le mode | `set_mode` | `mode` : Auto, Froid, Déshumidification, Ventilation, Chaud |
 | Régler la consigne | `set_target_temperature` | `target_temperature`, 16 à 31, pas de 1 |
 | Choisir la ventilation | `set_fan` | `fan` : Auto, Très lente, Lente, Moyenne, Rapide, Très rapide, Humidité, Turbo |
 | Choisir le volet vertical | `set_swing_v` | `swing_v` : Fixe, Balayage, Très haut, Haut, Milieu, Bas, Très bas |
 | Volet horizontal On / Off | `set_swing_h_on` / `_off` | `swing_h` |
 | Affichage On / Off | `set_display_on` / `_off` | `display` |
-| Couper le bip / Activer le bip | `set_mute_on` / `_off` | `mute` = `ON` / `OFF` |
+| Bip coupé On / Off (un seul interrupteur) | `set_mute_on` / `_off` | `mute` = `ON` / `OFF` |
 | Nettoyage On / Off | `set_clean_on` / `_off` | `clean` |
 | Resynchroniser | `set_resync` | `resync` |
 

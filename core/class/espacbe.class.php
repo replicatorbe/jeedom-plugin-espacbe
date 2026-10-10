@@ -324,8 +324,17 @@ class espacbe extends eqLogic {
             $order++;
             $cmd = $this->getCmd($def['type'], $def['logicalId']);
             if (is_object($cmd)) {
+                $changed = false;
                 if (isset($def['listValue']) && $cmd->getConfiguration('listValue') != $def['listValue']) {
                     $cmd->setConfiguration('listValue', $def['listValue']);
+                    $changed = true;
+                }
+                $legacy = espacbeContract::LEGACY_NAMES[$def['logicalId']] ?? array();
+                if (in_array($cmd->getName(), $legacy, true)) {
+                    $cmd->setName(__($def['name'], __FILE__));
+                    $changed = true;
+                }
+                if ($changed) {
                     $cmd->save();
                 }
                 continue;

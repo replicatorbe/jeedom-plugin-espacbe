@@ -82,6 +82,28 @@ class espacbeContract {
         'last_frame'         => array('kind' => 'string', 'set' => false),
         'rssi'               => array('kind' => 'number', 'set' => false),
         'uptime'             => array('kind' => 'number', 'set' => false),
+        'cmd_status'         => array('kind' => 'enum',   'set' => false, 'values' => 'CMD_STATUSES'),
+    );
+
+    /* Accusé de la dernière commande (firmware ≥ 0.5.0). */
+    const CMD_STATUSES = array(
+        'pending' => 'En attente',
+        'ok'      => 'Confirmée',
+        'failed'  => 'Non confirmée',
+    );
+
+    /*
+     * Anciens noms par défaut (versions précédentes) => renommés à l'enregistrement
+     * de l'équipement, seulement si l'utilisateur ne les a pas personnalisés.
+     * Les paires d'actions doivent finir par on/off ou marche/arrêt pour que le
+     * widget core::binarySwitch n'affiche qu'un seul interrupteur.
+     */
+    const LEGACY_NAMES = array(
+        'power'         => array('Marche'),
+        'set_power_on'  => array('Allumer'),
+        'set_power_off' => array('Eteindre'),
+        'set_mute_on'   => array('Couper le bip'),
+        'set_mute_off'  => array('Activer le bip'),
     );
 
     /* Identifiant de module : le nom ESPHome, [a-z0-9-]. */
@@ -241,7 +263,7 @@ class espacbeContract {
             array('logicalId' => 'status', 'name' => 'Etat connexion', 'type' => 'info', 'subType' => 'binary',
                   'visible' => 1, 'generic' => 'ONLINE'),
             array('logicalId' => 'unit_link', 'name' => 'Lien clim', 'type' => 'info', 'subType' => 'binary', 'visible' => 1),
-            array('logicalId' => 'power', 'name' => 'Marche', 'type' => 'info', 'subType' => 'binary',
+            array('logicalId' => 'power', 'name' => 'Etat marche', 'type' => 'info', 'subType' => 'binary',
                   'visible' => 0, 'generic' => 'ENERGY_STATE'),
             array('logicalId' => 'mode', 'name' => 'Mode', 'type' => 'info', 'subType' => 'string',
                   'visible' => 0, 'generic' => 'THERMOSTAT_MODE'),
@@ -258,12 +280,13 @@ class espacbeContract {
             array('logicalId' => 'rssi', 'name' => 'RSSI', 'type' => 'info', 'subType' => 'numeric', 'visible' => 0, 'unit' => 'dBm'),
             array('logicalId' => 'uptime', 'name' => 'Uptime', 'type' => 'info', 'subType' => 'numeric', 'visible' => 0, 'unit' => 's'),
             array('logicalId' => 'last_frame', 'name' => 'Dernière trame', 'type' => 'info', 'subType' => 'string', 'visible' => 0),
+            array('logicalId' => 'cmd_status', 'name' => 'Statut commande', 'type' => 'info', 'subType' => 'string', 'visible' => 1),
 
             /* -------------------------------------------------------- actions */
-            array('logicalId' => 'set_power_on', 'name' => 'Allumer', 'type' => 'action', 'subType' => 'other',
+            array('logicalId' => 'set_power_on', 'name' => 'Marche', 'type' => 'action', 'subType' => 'other',
                   'key' => 'power', 'payload' => 'ON', 'value' => 'power', 'visible' => 1,
                   'template' => 'core::binarySwitch', 'generic' => 'ENERGY_ON'),
-            array('logicalId' => 'set_power_off', 'name' => 'Eteindre', 'type' => 'action', 'subType' => 'other',
+            array('logicalId' => 'set_power_off', 'name' => 'Arrêt', 'type' => 'action', 'subType' => 'other',
                   'key' => 'power', 'payload' => 'OFF', 'value' => 'power', 'visible' => 1,
                   'template' => 'core::binarySwitch', 'generic' => 'ENERGY_OFF'),
             array('logicalId' => 'set_mode', 'name' => 'Choisir le mode', 'type' => 'action', 'subType' => 'select',
@@ -285,9 +308,9 @@ class espacbeContract {
                   'key' => 'display', 'payload' => 'ON', 'value' => 'display', 'visible' => 1, 'template' => 'core::binarySwitch'),
             array('logicalId' => 'set_display_off', 'name' => 'Affichage Off', 'type' => 'action', 'subType' => 'other',
                   'key' => 'display', 'payload' => 'OFF', 'value' => 'display', 'visible' => 1, 'template' => 'core::binarySwitch'),
-            array('logicalId' => 'set_mute_on', 'name' => 'Couper le bip', 'type' => 'action', 'subType' => 'other',
+            array('logicalId' => 'set_mute_on', 'name' => 'Bip coupé On', 'type' => 'action', 'subType' => 'other',
                   'key' => 'mute', 'payload' => 'ON', 'value' => 'mute', 'visible' => 1, 'template' => 'core::binarySwitch'),
-            array('logicalId' => 'set_mute_off', 'name' => 'Activer le bip', 'type' => 'action', 'subType' => 'other',
+            array('logicalId' => 'set_mute_off', 'name' => 'Bip coupé Off', 'type' => 'action', 'subType' => 'other',
                   'key' => 'mute', 'payload' => 'OFF', 'value' => 'mute', 'visible' => 1, 'template' => 'core::binarySwitch'),
             array('logicalId' => 'set_clean_on', 'name' => 'Nettoyage On', 'type' => 'action', 'subType' => 'other',
                   'key' => 'clean', 'payload' => 'ON', 'value' => 'clean', 'visible' => 1, 'template' => 'core::binarySwitch'),
