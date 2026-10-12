@@ -239,6 +239,11 @@ class espacbe extends eqLogic {
                 $this->ingestInfo($_payload);
                 return;
             case 'state':
+                /* Clé hors contrat (diagnostic ou firmware plus récent) : ignorée sans bruit. */
+                if (!isset(espacbeContract::KEYS[$_key])) {
+                    log::add('espacbe', 'debug', sprintf(__('%1$s : clé %2$s ignorée (hors contrat)', __FILE__), $this->getLogicalId(), $_key));
+                    return;
+                }
                 $value = espacbeContract::stateValue($_key, $_payload);
                 if ($value === null) {
                     log::add('espacbe', 'warning', sprintf(__('%1$s : valeur hors contrat pour %2$s « %3$s »', __FILE__), $this->getLogicalId(), $_key, $_payload));

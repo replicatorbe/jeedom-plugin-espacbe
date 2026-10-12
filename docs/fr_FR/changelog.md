@@ -4,7 +4,9 @@
 
 - Licence : le plugin passe de l'AGPL v3 à la **GPL-3.0-only**, la licence choisie par
   l'auteur d'[ESPAC](https://github.com/git-greatguy/espac). Ajout d'un fichier NOTICE
-  avec les crédits. Aucun changement fonctionnel.
+  avec les crédits.
+- Journal : un topic d'état hors contrat (diagnostic du firmware, comme `rx_bytes`) n'est plus
+  signalé en avertissement toutes les 10 s, il est simplement ignoré (visible en debug).
 
 ## 0.4.0
 
