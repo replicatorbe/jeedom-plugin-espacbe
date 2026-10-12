@@ -6,7 +6,7 @@
         "fr_FR": "Pilote les climatiseurs Airton équipés d'un module ESP32 ESPAC, branché sur le port série interne de la clim, par MQTT et sans cloud. Le plugin découvre seul chaque module qui s'annonce sur le broker, crée l'équipement et ses commandes : marche, arrêt, mode (auto, froid, déshumidification, ventilation, chaud), consigne de 16 à 31 °C, ventilation, volets vertical et horizontal, affichage, bip, nettoyage, température de la pièce, état du lien avec la clim, RSSI et uptime du module. Basé sur le projet original ESPAC de dOHMotik : https://github.com/git-greatguy/espac",
         "en_US": "Controls Airton air conditioners fitted with an ESPAC ESP32 module, wired to the unit's internal serial port, over MQTT and without any cloud. The plugin discovers every module announcing itself on the broker, creates the device and its commands: on, off, mode (auto, cool, dry, fan, heat), setpoint from 16 to 31 °C, fan speed, vertical and horizontal louvers, display, beep, cleaning, room temperature, unit link state, module RSSI and uptime. Based on the original ESPAC project by dOHMotik: https://github.com/git-greatguy/espac"
     },
-    "licence": "AGPL",
+    "licence": "GPL",
     "author": "sMug (Jérôme Fafchamps)",
     "require": "4.4",
     "requireOsVersion": "12",

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+- Licence : le plugin passe de l'AGPL v3 à la **GPL-3.0-only**, la licence choisie par
+  l'auteur d'[ESPAC](https://github.com/git-greatguy/espac). Ajout d'un fichier NOTICE
+  avec les crédits. Aucun changement fonctionnel.
+
 ## 0.4.0
 
 - Nouvelles infos « Qualité liaison » (% de trames valides, historisée) et « Etat incertain »

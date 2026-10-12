@@ -1,6 +1,6 @@
 # Licences des bibliothèques embarquées
 
-Le plugin `espacbe` est distribué sous **AGPL v3**. Les trois bibliothèques
+Le plugin `espacbe` est distribué sous **GPL v3 (GPL-3.0-only)**. Les trois bibliothèques
 copiées dans ce dossier sont toutes sous **licence MIT**. Leurs textes intégraux
 sont conservés à côté des sources, comme la licence l'exige, et ne doivent pas
 être supprimés à la montée de version.
@@ -11,23 +11,22 @@ sont conservés à côté des sources, comme la licence l'exige, et ne doivent p
 | [psr/log](https://github.com/php-fig/log) | 3.0.2 | MIT | PHP Framework Interoperability Group (2012) | `psr/log/LICENSE` |
 | [myclabs/php-enum](https://github.com/myclabs/php-enum) | 1.8.5 | MIT | My C-Labs (2015) | `myclabs/php-enum/LICENSE` |
 
-## Compatibilité avec l'AGPL du plugin
+## Compatibilité avec la GPL du plugin
 
 La licence MIT est permissive : elle autorise l'usage, la copie, la modification
 et la redistribution, y compris dans un travail dérivé placé sous une autre
 licence, à la seule condition de conserver l'avis de droit d'auteur et le texte
 de la licence. Elle n'impose en retour aucune contrainte sur le reste du code.
 
-Elle est donc compatible avec l'AGPL v3, et dans ce sens-là seulement : du code
-MIT peut être intégré à un ensemble distribué sous AGPL. L'inverse n'est pas
+Elle est donc compatible avec la GPL v3, et dans ce sens-là seulement : du code
+MIT peut être intégré à un ensemble distribué sous GPL. L'inverse n'est pas
 vrai — on ne peut pas reverser du code du plugin dans ces bibliothèques sans
 changer sa licence. La Free Software Foundation classe explicitement la licence
-MIT (« Expat ») parmi les licences libres permissives compatibles GPL, et
-l'AGPL v3 hérite de cette compatibilité.
+MIT (« Expat ») parmi les licences libres permissives compatibles GPL.
 
 Concrètement :
 
-- l'ensemble distribué (plugin + bibliothèques) reste sous AGPL v3 ;
+- l'ensemble distribué (plugin + bibliothèques) reste sous GPL v3 (GPL-3.0-only) ;
 - chaque fichier de ces trois bibliothèques reste sous MIT et sous le droit
   d'auteur de son titulaire, en-têtes compris ;
 - les fichiers `LICENSE` accompagnent obligatoirement toute redistribution du

@@ -1,0 +1,13 @@
+espacbe — plugin Jeedom pour les climatiseurs Airton équipés d'un module ESP32 ESPAC.
+Copyright (C) 2026 sMug (Jérôme Fafchamps).
+
+Distribué sous GPL-3.0-only. Voir LICENSE.
+
+Ce plugin pilote le firmware espac-jeedom (https://github.com/replicatorbe/espac-jeedom),
+dérivé d'ESPAC — Copyright (C) 2025-2026 git-greatguy (Dohmotik), GPL-3.0-only :
+https://github.com/git-greatguy/espac
+La même licence est utilisée ici, en accord avec le choix de l'auteur d'ESPAC.
+
+Bibliothèques embarquées sous licence MIT (php-mqtt/client, psr/log, myclabs/php-enum) :
+voir resources/espacbed/lib/LICENSES.md.
+resources/espacbed/lib/autoload.php provient du modèle de plugin Jeedom (GPL v3 ou ultérieure).

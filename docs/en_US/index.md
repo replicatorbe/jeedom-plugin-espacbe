@@ -3,6 +3,8 @@
 Controls **Airton** air conditioners fitted with an **ESPAC ESP32** module over
 MQTT, locally and without any cloud. Based on the original
 [ESPAC](https://github.com/git-greatguy/espac) project by dOHMotik.
+The plugin and the [espac-jeedom](https://github.com/replicatorbe/espac-jeedom)
+firmware are licensed under GPL-3.0-only, like ESPAC.
 
 1. Flash the module with the `espac-jeedom` firmware and point it to your MQTT
    broker (see the firmware README).

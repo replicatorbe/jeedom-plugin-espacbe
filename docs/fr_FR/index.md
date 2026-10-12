@@ -10,7 +10,8 @@ qui reflète l'état réel de la clim et exécute les commandes. Toute la logiqu
 
 Basé sur le projet original [ESPAC](https://github.com/git-greatguy/espac) de
 dOHMotik (édition Home Assistant), porté vers Jeedom par le firmware
-`espac-jeedom`.
+[espac-jeedom](https://github.com/replicatorbe/espac-jeedom). Le plugin et le
+firmware sont, comme ESPAC, sous licence GPL-3.0-only.
 
 ## Prérequis
 
