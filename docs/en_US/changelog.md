@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2
+
+- The endpoint called by the daemon now only accepts the plugin's API key:
+  a Jeedom user's personal key used to be accepted as well.
+- info.json now reports the right version (it was stuck at 0.1.0).
+
 ## 0.4.1
 
 - License changed from AGPL v3 to **GPL-3.0-only**, the license chosen by the

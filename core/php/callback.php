@@ -27,7 +27,11 @@ require_once __DIR__ . '/../../../../core/php/core.inc.php';
 /* La clé arrive par en-tête : la chaîne de requête est journalisée par Apache. */
 $apikey = isset($_SERVER['HTTP_X_ESPACBE_APIKEY']) ? $_SERVER['HTTP_X_ESPACBE_APIKEY'] : '';
 
-if (!jeedom::apiAccess($apikey, 'espacbe')) {
+/* La seule clé du plugin : jeedom::apiAccess() accepterait aussi celle de
+ * n'importe quel utilisateur. apiAccess() reste appelé pour son contrôle
+ * d'origine (accès du plugin limité à localhost). */
+if (!is_string($apikey) || !hash_equals(jeedom::getApiKey('espacbe'), $apikey)
+    || !jeedom::apiAccess($apikey, 'espacbe')) {
     echo 'Unauthorized access.';
     log::add('espacbe', 'error', sprintf(__('Accès non autorisé depuis %s', __FILE__),
              isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '?'));

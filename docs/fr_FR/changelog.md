@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2
+
+- Le point d'entrée appelé par le démon n'accepte plus que la clé API du
+  plugin : la clé personnelle d'un utilisateur Jeedom y donnait aussi accès.
+- info.json annonce enfin la bonne version (il était resté en 0.1.0).
+
 ## 0.4.1
 
 - Licence : le plugin passe de l'AGPL v3 à la **GPL-3.0-only**, la licence choisie par
