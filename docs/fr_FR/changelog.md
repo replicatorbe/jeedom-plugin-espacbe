@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.3
+
+- Arrêt du démon : après SIGTERM, il a désormais dix secondes (au lieu de
+  cinq) avant un kill -9, et un démon resté hors du fichier PID est arrêté
+  lui aussi. Au redémarrage, le nouveau démon attend (cinq secondes au plus)
+  que le port d'ordres soit libéré.
+
 ## 0.4.2
 
 - Le point d'entrée appelé par le démon n'accepte plus que la clé API du

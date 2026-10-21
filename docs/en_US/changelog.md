@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.3
+
+- Daemon stop: after SIGTERM it now gets ten seconds (instead of five)
+  before a kill -9, and a daemon missing from the PID file is stopped too.
+  On restart, the new daemon waits (five seconds at most) for the command
+  port to be released.
+
 ## 0.4.2
 
 - The endpoint called by the daemon now only accepts the plugin's API key:

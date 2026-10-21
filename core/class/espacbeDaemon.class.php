@@ -169,6 +169,12 @@ class espacbeDaemon {
 
     public static function start() {
         self::stop();
+        /* Le nouveau démon s'arrêterait aussitôt sur un port encore tenu.
+         * Un autre programme qui l'occupe n'est pas tué : le journal du
+         * démon le dira. */
+        for ($i = 0; $i < 20 && self::portBusy(); $i++) {
+            usleep(250000);
+        }
         $info = self::info();
         if ($info['launchable'] != 'ok') {
             throw new Exception(__('Le démon ne peut pas être lancé :', __FILE__) . ' '
@@ -229,7 +235,7 @@ class espacbeDaemon {
             }
             if (@posix_getsid($cpid)) {
                 posix_kill($cpid, 15);
-                for ($i = 1; $i <= 20 && @posix_getsid($cpid); $i++) {
+                for ($i = 1; $i <= 40 && @posix_getsid($cpid); $i++) {
                     usleep(250000);
                 }
                 if (@posix_getsid($cpid)) {
@@ -237,8 +243,30 @@ class espacbeDaemon {
                 }
             }
         }
+        /* Filet de sécurité : un démon lancé à la main, ou dont ni le cache ni
+         * le fichier PID ne se souviennent, garderait le port d'ordres. */
+        if (count(system::ps('resources/espacbed/espacbed.php')) > 0) {
+            system::kill('resources/espacbed/espacbed.php', false);
+            for ($i = 0; $i < 20 && count(system::ps('resources/espacbed/espacbed.php')) > 0; $i++) {
+                usleep(250000);
+            }
+            if (count(system::ps('resources/espacbed/espacbed.php')) > 0) {
+                system::kill('resources/espacbed/espacbed.php');
+            }
+        }
         self::cleanup();
         return true;
+    }
+
+    /* Le port d'ordres est-il encore tenu ? Essai d'écoute plutôt que de
+     * connexion : un démon encore là ne voit passer aucun ordre vide. */
+    private static function portBusy() {
+        $server = @stream_socket_server('tcp://127.0.0.1:' . self::getSocketPort(), $errno, $errstr);
+        if ($server === false) {
+            return true;
+        }
+        fclose($server);
+        return false;
     }
 
     private static function isOurDaemon($_pid) {
